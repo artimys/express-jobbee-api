@@ -43,7 +43,7 @@ const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT} in ${process.env.NODE_ENV} mode.`);
 });
 
-// Handle unhandled promise rejections
+// Handle unhandled promise rejection
 process.on('unhandledRejection', err => {
     console.log(`Error: ${err.message}`);
     console.log('Shutting down the server due to unhandled promise rejection');
