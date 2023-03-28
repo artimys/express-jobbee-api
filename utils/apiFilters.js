@@ -8,7 +8,7 @@ class APIFilters {
         const queryCopy = {...this.queryString};
 
         // Remove fields from query
-        const removeFields = ['select', 'sort', 'page', 'limit'];
+        const removeFields = ['sort', 'fields'];
         removeFields.forEach(el => delete queryCopy[el]);
 
         // Advance filter using: lt, lte, gt, gte
@@ -31,6 +31,18 @@ class APIFilters {
         } else {
             this.query = this.query.sort('-positingDate');
         }
+        return this;
+    }
+
+    limitFields() {
+
+        if (this.queryString.fields) {
+            const fields = this.queryString.fields.split(',').join(' ');
+            this.query = this.query.select(fields);
+        } else {
+            this.query = this.query.select('-__v');
+        }
+
         return this;
     }
 }
