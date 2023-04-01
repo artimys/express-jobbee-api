@@ -7,6 +7,7 @@ npm install slugify --save
 npm install node-geocoder --save
 npm install bcryptjs --save
 npm install jsonwebtoken --save
+npm install cookie-parser --save
 ```
 
 dev only

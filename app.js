@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 const connectDatabase = require('./config/database');
 const errorMiddleware = require('./middlewares/errors');
@@ -22,6 +23,9 @@ connectDatabase();
 
 // Setup body parser
 app.use(express.json());
+
+// Set cookie parser
+app.use(cookieParser());
 
 // Import all routes
 const jobs = require('./routes/jobs');
