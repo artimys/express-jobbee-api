@@ -9,7 +9,10 @@ const {
     updateJob,
     deleteJob,
     jobStats,
-    getJobsInRadius} = require('../controllers/jobsController');
+    getJobsInRadius
+} = require('../controllers/jobsController');
+
+const { isAuthenticatedUser } = require('../middlewares/auth');
 
 
 // router.get('/jobs', (req, res) => {
@@ -20,9 +23,9 @@ router.route('/jobs/:zipcode/:distance').get(getJobsInRadius);
 router.route('/stats/:topic').get(jobStats);
 
 
-router.route('/job/new').post(newJob);
+router.route('/job/new').post(isAuthenticatedUser, newJob);
 router.route('/job/:id')
-        .put(updateJob)
-        .delete(deleteJob);
+        .put(isAuthenticatedUser, updateJob)
+        .delete(isAuthenticatedUser, deleteJob);
 
 module.exports = router;
